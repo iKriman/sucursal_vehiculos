@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Esto asegura que baje la última versión de tu código de GitHub
+               
                 checkout scm
             }
         }
@@ -28,10 +28,8 @@ pipeline {
         stage('Desplegar contenedor') {
             steps {
                 script {
-                    // Detenemos y borramos si ya existe para que no de error de "nombre ocupado"
                     sh 'docker stop contenedor_sucursal || true'
                     sh 'docker rm contenedor_sucursal || true'
-                    // Desplegamos en el puerto 9090 como pide la actividad
                     sh 'docker run -d -p 9090:8080 --name contenedor_sucursal imagen_vehiculos'
                 }
             }
