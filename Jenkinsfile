@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clonar repositorio') {
-            steps {
-                git 'https://github.com/iKriman/Sucursal_vehiculos.git'
-            }
-        }
-
         stage('Compilar proyecto WAR') {
             steps {
                 sh 'mvn clean package -DskipTests'
