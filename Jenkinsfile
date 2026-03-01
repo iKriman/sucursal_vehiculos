@@ -3,17 +3,14 @@ pipeline {
 
     stages {
 
-stage('Compilar proyecto WAR') {
-    steps {
-        sh '''
-        docker run --rm \
-          -v $WORKSPACE:/app \
-          -w /app \
-          maven:3.9.6-eclipse-temurin-17 \
-          mvn clean package -DskipTests
-        '''
-    }
-}
+        stage('Compilar proyecto WAR') {
+            steps {
+                sh '''
+                chmod +x mvnw
+                ./mvnw clean package -DskipTests
+                '''
+            }
+        }
 
         stage('Construir imagen Docker') {
             steps {
